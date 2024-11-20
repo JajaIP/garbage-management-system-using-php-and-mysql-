@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collection Schedule</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f3f4f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2em;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+
+        .schedule-list h3 {
+            font-size: 1.2em;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .schedule-item {
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        .schedule-item span {
+            display: block;
+            font-size: 1em;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Collection Schedule</h1>
+            <p>View scheduled waste collection dates and times to stay on track with your waste management routine.</p>
+        </header>
+
+        <div class="schedule-list" id="schedule-list">
+            <h3>Your Scheduled Collections</h3>
+        </div>
+    </div>
+
+    <script>
+        function loadSchedules() {
+            // Get schedules from local storage (set by the admin)
+            const schedules = JSON.parse(localStorage.getItem('schedules')) || [];
+            
+            const scheduleList = document.getElementById("schedule-list");
+            scheduleList.innerHTML = "";
+
+            if (schedules.length === 0) {
+                scheduleList.innerHTML = "<p>No scheduled collections at the moment.</p>";
+            } else {
+                schedules.forEach(schedule => {
+                    const scheduleItem = document.createElement("div");
+                    scheduleItem.className = "schedule-item";
+                    scheduleItem.innerHTML = `
+                        <span><strong>Location:</strong> ${schedule.location}</span>
+                        <span><strong>Date & Time:</strong> ${new Date(schedule.dateTime).toLocaleString()}</span>
+                    `;
+                    scheduleList.appendChild(scheduleItem);
+                });
+            }
+        }
+
+        loadSchedules();
+    </script>
+</body>
+</html>

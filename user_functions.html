@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Functions</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Basic reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        /* Body styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f4f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+        
+        /* Container styling */
+        .container {
+            width: 100%;
+            max-width: 700px;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Header styling */
+        h2 {
+            text-align: center;
+            color: #007bff;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+        
+        /* Section styling */
+        .section {
+            background-color: #f8f9fa;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.08);
+        }
+        
+        .section h3 {
+            color: #0056b3;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+        }
+
+        .section p {
+            font-size: 0.95em;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        /* Button styling */
+        .button {
+            display: inline-block;
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            color: #ffffff;
+            text-align: center;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>User Functions</h2>
+
+        <!-- Collection Schedule Section -->
+        <div class="section">
+            <h3>Collection Schedule</h3>
+            <p>View your scheduled waste collection dates and times to stay on track with your waste management routine.</p>
+            <a href="collection_schedule.html" class="button">View Schedule</a>
+        </div>
+
+        <!-- Request Pick-Up Section -->
+        <div class="section">
+            <h3>Request Pick-Up</h3>
+            <p>Need a waste pick-up? Use this option to request a collection at your preferred time and location.</p>
+            <a href="request_pickup.html" class="button">Request Pick-Up</a>
+        </div>
+
+        <!-- Data Input After Collection Section -->
+        <div class="section">
+            <h3>Data Input After Collection</h3>
+            <p>Enter the date and time of your collection to help keep track of completed pickups.</p>
+            <a href="collection_data.html" class="button">Submit Collection Data</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Drivers</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f4f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2em;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin: 15px 0;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 1em;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 10px;
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        .driver-list {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .driver-item {
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .edit, .delete {
+            padding: 8px 12px;
+            font-size: 0.9em;
+            border: none;
+            border-radius: 5px;
+            color: #ffffff;
+            cursor: pointer;
+        }
+
+        .edit {
+            background-color: #ffc107;
+        }
+
+        .delete {
+            background-color: #dc3545;
+        }
+
+        .edit:hover {
+            background-color: #e0a800;
+        }
+
+        .delete:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Manage Drivers</h1>
+            <p>Assign, update, and track driver information to streamline waste collection operations.</p>
+        </header>
+
+        <!-- Driver Form -->
+        <div class="form-group">
+            <label for="driver-name">Driver Name:</label>
+            <input type="text" id="driver-name" placeholder="Enter driver's full name">
+        </div>
+        <div class="form-group">
+            <label for="driver-phone">Phone Number:</label>
+            <input type="tel" id="driver-phone" placeholder="Enter driver's phone number">
+        </div>
+        <div class="form-group">
+            <label for="assigned-truck">Assigned Truck:</label>
+            <select id="assigned-truck">
+                <option value="">Select a Truck</option>
+                <option value="KDL 323O">KDL 323O</option>
+                <option value="KCL 234P">KCL 234P</option>
+                <option value="KDD 343P">KDD 343P</option>
+            </select>
+        </div>
+        <button class="button" onclick="addDriver()">Add Driver</button>
+
+        <!-- Driver List -->
+        <div class="driver-list" id="driver-list">
+            <h3>Driver List</h3>
+        </div>
+    </div>
+
+    <script>
+        let drivers = JSON.parse(localStorage.getItem('drivers')) || [];
+
+        function renderDriverList() {
+            const driverList = document.getElementById("driver-list");
+            driverList.innerHTML = "<h3>Driver List</h3>";
+
+            if (drivers.length === 0) {
+                driverList.innerHTML += "<p>No drivers added yet.</p>";
+            } else {
+                drivers.forEach((driver, index) => {
+                    const driverItem = document.createElement("div");
+                    driverItem.className = "driver-item";
+                    driverItem.innerHTML = `
+                        <p><strong>Name:</strong> ${driver.name}</p>
+                        <p><strong>Phone:</strong> ${driver.phone}</p>
+                        <p><strong>Assigned Truck:</strong> ${driver.truck}</p>
+                        <div class="button-group">
+                            <button class="edit" onclick="editDriver(${index})">Edit</button>
+                            <button class="delete" onclick="deleteDriver(${index})">Delete</button>
+                        </div>
+                    `;
+                    driverList.appendChild(driverItem);
+                });
+            }
+        }
+
+        function addDriver() {
+            const name = document.getElementById("driver-name").value;
+            const phone = document.getElementById("driver-phone").value;
+            const truck = document.getElementById("assigned-truck").value;
+
+            if (name && phone && truck) {
+                drivers.push({ name, phone, truck });
+                saveDrivers();
+                renderDriverList();
+                clearForm();
+            } else {
+                alert("Please fill out all fields.");
+            }
+        }
+
+        function editDriver(index) {
+            const driver = drivers[index];
+            document.getElementById("driver-name").value = driver.name;
+            document.getElementById("driver-phone").value = driver.phone;
+            document.getElementById("assigned-truck").value = driver.truck;
+            deleteDriver(index);  // Remove the driver temporarily for editing
+        }
+
+        function deleteDriver(index) {
+            drivers.splice(index, 1);
+            saveDrivers();
+            renderDriverList();
+        }
+
+        function saveDrivers() {
+            localStorage.setItem('drivers', JSON.stringify(drivers));
+        }
+
+        function clearForm() {
+            document.getElementById("driver-name").value = "";
+            document.getElementById("driver-phone").value = "";
+            document.getElementById("assigned-truck").value = "";
+        }
+
+        // Initial render
+        renderDriverList();
+    </script>
+</body>
+</html>

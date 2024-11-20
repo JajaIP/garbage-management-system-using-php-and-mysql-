@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Functions</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Reset and Body Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f3f4f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+        
+        /* Main Container */
+        .container {
+            width: 90%;
+            max-width: 800px;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
+            text-align: center;
+        }
+        
+        /* Header */
+        header h1 {
+            font-size: 2em;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        /* Section Styling */
+        .section {
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .section h2 {
+            font-size: 1.5em;
+            color: #0056b3;
+            margin-bottom: 15px;
+        }
+
+        .section p {
+            font-size: 0.95em;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        /* Button Styling */
+        .button {
+            display: inline-block;
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            color: #ffffff;
+            text-align: center;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+            margin-top: 10px;
+        }
+        
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Admin Functions</h1>
+            <p>Manage essential functions of the Waste Management System</p>
+        </header>
+
+        <!-- Manage Users Section -->
+        <div class="section" id="manage-users">
+            <h2>Manage Users</h2>
+            <p>Add, update, or delete user accounts to maintain an organized and up-to-date user database.</p>
+            <a href="manage_users.html" class="button">Manage Users</a>
+        </div>
+
+        <!-- Schedule Collections Section -->
+        <div class="section" id="schedule-collections">
+            <h2>Schedule Collections</h2>
+            <p>Create and manage collection schedules for various locations to ensure timely waste disposal.</p>
+            <a href="schedule_collections.html" class="button">Schedule Collections</a>
+        </div>
+
+        <!-- Respond to Collection Requests Section -->
+        <div class="section" id="respond-requests">
+            <h2>Respond to Collection Requests</h2>
+            <p>Review and respond to collection requests submitted by users to provide efficient service.</p>
+            <a href="respond_requests.html" class="button">Respond to Requests</a>
+        </div>
+
+        <!-- Manage Drivers Section -->
+        <div class="section" id="manage-drivers">
+            <h2>Manage Drivers</h2>
+            <p>Assign, update, and track driver information to streamline waste collection operations.</p>
+            <a href="manage_drivers.html" class="button">Manage Drivers</a>
+        </div>
+    </div>
+</body>
+</html>

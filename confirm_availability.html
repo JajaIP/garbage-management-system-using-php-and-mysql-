@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm Availability</title>
+    <style>
+        /* Reset and Base Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #007bff, #6dd5fa, #ffffff);
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+
+        /* Form Container */
+        .form-container {
+            width: 90%;
+            max-width: 500px;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        /* Header Styling */
+        .form-container h2 {
+            font-size: 2em;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+
+        /* Form Group Styling */
+        .form-group {
+            margin: 15px 0;
+            text-align: left;
+        }
+
+        label {
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* Radio Buttons for Availability */
+        .availability-options {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        .availability-options input {
+            margin-right: 10px;
+        }
+
+        /* Submit Button Styling */
+        .submit-button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin-top: 20px;
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .submit-button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        .submit-button:active {
+            transform: translateY(1px);
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Confirm Availability</h2>
+
+        <!-- Form for Confirming Availability -->
+        <form id="availability-form">
+            <div class="form-group">
+                <label for="availability">Are you available for your assigned tasks?</label>
+                <div class="availability-options">
+                    <label for="available">
+                        <input type="radio" id="available" name="availability" value="Yes" required> Yes
+                    </label>
+                    <label for="not-available">
+                        <input type="radio" id="not-available" name="availability" value="No"> No
+                    </label>
+                </div>
+            </div>
+            <button type="submit" class="submit-button">Confirm Availability</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("availability-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const availability = document.querySelector('input[name="availability"]:checked').value;
+
+            if (availability) {
+                alert(`You have confirmed your availability as: ${availability}`);
+                document.getElementById("availability-form").reset();
+            } else {
+                alert("Please select an availability option.");
+            }
+        });
+    </script>
+</body>
+</html>

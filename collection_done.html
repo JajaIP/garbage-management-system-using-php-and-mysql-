@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mark Collection as Done</title>
+    <style>
+        /* Reset and Base Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #007bff, #6dd5fa, #ffffff);
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+
+        /* Form Container */
+        .form-container {
+            width: 90%;
+            max-width: 500px;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        /* Header Styling */
+        .form-container h2 {
+            font-size: 2em;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+
+        /* Form Group Styling */
+        .form-group {
+            margin: 15px 0;
+            text-align: left;
+        }
+
+        label {
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* Date and Time Picker Styling */
+        input[type="date"], input[type="time"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1em;
+        }
+
+        /* Select Dropdown for Collection Status */
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1em;
+        }
+
+        /* Submit Button Styling */
+        .submit-button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin-top: 20px;
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .submit-button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        .submit-button:active {
+            transform: translateY(1px);
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Mark Collection as Done</h2>
+
+        <!-- Form for Marking Collection as Done -->
+        <form id="collection-done-form">
+            <div class="form-group">
+                <label for="collection-status">Select Collection Status:</label>
+                <select id="collection-status" name="collection-status" required>
+                    <option value="" disabled selected>Select your collection status</option>
+                    <option value="Done">Done</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Delayed">Delayed</option>
+                </select>
+            </div>
+
+            <!-- Date Picker -->
+            <div class="form-group">
+                <label for="collection-date">Select Collection Date:</label>
+                <input type="date" id="collection-date" name="collection-date" required>
+            </div>
+
+            <!-- Time Picker -->
+            <div class="form-group">
+                <label for="collection-time">Select Collection Time:</label>
+                <input type="time" id="collection-time" name="collection-time" required>
+            </div>
+
+            <button type="submit" class="submit-button">Mark as Done</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("collection-done-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const status = document.getElementById("collection-status").value;
+            const date = document.getElementById("collection-date").value;
+            const time = document.getElementById("collection-time").value;
+
+            if (status && date && time) {
+                alert(`Collection marked as: ${status}\nDate: ${date}\nTime: ${time}`);
+                document.getElementById("collection-done-form").reset();
+            } else {
+                alert("Please fill in all fields.");
+            }
+        });
+    </script>
+</body>
+</html>

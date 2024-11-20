@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Pick-Up</title>
+    <style>
+        /* Reset and Base Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #007bff, #6dd5fa, #ffffff);
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+
+        /* Request Container */
+        .request-container {
+            width: 90%;
+            max-width: 600px;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        /* Header Styling */
+        .request-container h2 {
+            font-size: 2em;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+
+        /* Form Input Styling */
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-size: 1em;
+        }
+
+        /* Submit Button Styling */
+        .submit-button {
+            padding: 12px 20px;
+            background-color: #007bff;
+            color: #ffffff;
+            font-size: 1.1em;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Confirmation Message Styling */
+        .confirmation-message {
+            padding: 15px;
+            background-color: #d4edda;
+            color: #155724;
+            border-radius: 8px;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .error-message {
+            padding: 15px;
+            background-color: #f8d7da;
+            color: #721c24;
+            border-radius: 8px;
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="request-container">
+        <h2>Request a Waste Pick-Up</h2>
+        
+        <!-- Request Form -->
+        <form id="requestForm">
+            <input type="text" id="location" placeholder="Enter your location" required>
+            <input type="datetime-local" id="pickupTime" required>
+            <textarea id="notes" placeholder="Additional Notes (optional)" rows="4"></textarea>
+            <button type="submit" class="submit-button">Submit Request</button>
+        </form>
+
+        <!-- Confirmation Message -->
+        <div class="confirmation-message" id="successMessage">
+            <strong>Success!</strong> Your pick-up request has been successfully sent.
+        </div>
+
+        <!-- Error Message -->
+        <div class="error-message" id="errorMessage">
+            <strong>Error!</strong> There was a problem submitting your request. Please try again.
+        </div>
+    </div>
+
+    <script>
+        // Handling the form submission
+        const form = document.getElementById('requestForm');
+        const successMessage = document.getElementById('successMessage');
+        const errorMessage = document.getElementById('errorMessage');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Collecting form data
+            const location = document.getElementById('location').value;
+            const pickupTime = document.getElementById('pickupTime').value;
+            const notes = document.getElementById('notes').value;
+
+            // Simulate successful form submission (in a real-world scenario, you would send the data to the server)
+            if (location && pickupTime) {
+                // Show success message
+                successMessage.style.display = 'block';
+                errorMessage.style.display = 'none';
+
+                // Reset form fields after submission
+                form.reset();
+            } else {
+                // Show error message if the form submission fails
+                successMessage.style.display = 'none';
+                errorMessage.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>

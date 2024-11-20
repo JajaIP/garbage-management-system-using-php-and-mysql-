@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Driver Details</title>
+    <style>
+        /* Reset and Base Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #007bff, #6dd5fa, #ffffff);
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+
+        /* Form Container */
+        .form-container {
+            width: 90%;
+            max-width: 500px;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        /* Header Styling */
+        .form-container h2 {
+            font-size: 2em;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+
+        /* Form Group Styling */
+        .form-group {
+            margin: 15px 0;
+            text-align: left;
+        }
+
+        label {
+            font-weight: bold;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="tel"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1em;
+        }
+
+        /* Submit Button Styling */
+        .submit-button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin-top: 20px;
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .submit-button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        .submit-button:active {
+            transform: translateY(1px);
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Submit Driver Details</h2>
+
+        <!-- Form for Driver Details -->
+        <form id="driver-details-form">
+            <div class="form-group">
+                <label for="driver-name">Full Name:</label>
+                <input type="text" id="driver-name" name="driver-name" placeholder="Enter your full name" required>
+            </div>
+            <div class="form-group">
+                <label for="driver-phone">Phone Number:</label>
+                <input type="tel" id="driver-phone" name="driver-phone" placeholder="Enter your phone number" required>
+            </div>
+            <button type="submit" class="submit-button">Submit Details</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("driver-details-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById("driver-name").value;
+            const phone = document.getElementById("driver-phone").value;
+
+            if (name && phone) {
+                alert(`Details Submitted:\nName: ${name}\nPhone: ${phone}`);
+                document.getElementById("driver-details-form").reset();
+            } else {
+                alert("Please fill out all fields.");
+            }
+        });
+    </script>
+</body>
+</html>
